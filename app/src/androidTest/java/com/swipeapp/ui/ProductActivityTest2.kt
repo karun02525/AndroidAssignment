@@ -4,6 +4,7 @@ package com.swipeapp.ui
 import android.view.View
 import android.view.ViewGroup
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.*
 import androidx.test.espresso.matcher.ViewMatchers.*
@@ -22,31 +23,15 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class ProductActivityTest {
+class ProductActivityTest2 {
 
     @Rule
     @JvmField
     var mActivityScenarioRule = ActivityScenarioRule(ProductActivity::class.java)
 
     @Test
-    fun productActivityTest() {
-        val appCompatEditText = onView(
-            allOf(
-                withId(R.id.search_suggest),
-                childAtPosition(
-                    allOf(
-                        withId(R.id.search_container),
-                        childAtPosition(
-                            withClassName(`is`("androidx.constraintlayout.widget.ConstraintLayout")),
-                            0
-                        )
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        appCompatEditText.perform(pressImeActionButton())
+    fun productActivityTest2() {
+        pressBack()
 
         val floatingActionButton = onView(
             allOf(
@@ -63,55 +48,23 @@ class ProductActivityTest {
         )
         floatingActionButton.perform(click())
 
-        val appCompatImageView = onView(
+        val textInputEditText = onView(
             allOf(
-                withId(R.id.choose_image),
+                withId(R.id.item_name),
                 childAtPosition(
                     childAtPosition(
-                        withClassName(`is`("android.widget.ScrollView")),
+                        withId(R.id.item_name_label),
                         0
                     ),
                     0
                 )
             )
         )
-        appCompatImageView.perform(scrollTo(), click())
-
-        val linearLayout = onView(
-            allOf(
-                withId(com.github.dhaval2404.imagepicker.R.id.lytCameraPick),
-                childAtPosition(
-                    childAtPosition(
-                        withId(androidx.appcompat.R.id.custom),
-                        0
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        linearLayout.perform(click())
-
-        val actionMenuItemView = onView(
-            allOf(
-                withId(com.github.dhaval2404.imagepicker.R.id.menu_crop),
-                withContentDescription("Crop"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(com.github.dhaval2404.imagepicker.R.id.toolbar),
-                        2
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        actionMenuItemView.perform(click())
-
+        textInputEditText.perform(scrollTo(), replaceText("LAPTOP"), closeSoftKeyboard())
 
         val textInputEditText2 = onView(
             allOf(
-                withId(R.id.item_name), withText("Mobile"),
+                withId(R.id.item_name), withText("LAPTOP"),
                 childAtPosition(
                     childAtPosition(
                         withId(R.id.item_name_label),
@@ -135,11 +88,11 @@ class ProductActivityTest {
                 )
             )
         )
-        textInputEditText3.perform(scrollTo(), replaceText("Electronic"), closeSoftKeyboard())
+        textInputEditText3.perform(scrollTo(), replaceText("Electronic "), closeSoftKeyboard())
 
         val textInputEditText4 = onView(
             allOf(
-                withId(R.id.item_type), withText("Electronic"),
+                withId(R.id.item_type), withText("Electronic "),
                 childAtPosition(
                     childAtPosition(
                         withId(R.id.item_type_label),
@@ -163,11 +116,11 @@ class ProductActivityTest {
                 )
             )
         )
-        textInputEditText5.perform(scrollTo(), replaceText("120000"), closeSoftKeyboard())
+        textInputEditText5.perform(scrollTo(), replaceText("250008"), closeSoftKeyboard())
 
         val textInputEditText6 = onView(
             allOf(
-                withId(R.id.item_price), withText("120000"),
+                withId(R.id.item_price), withText("250008"),
                 childAtPosition(
                     childAtPosition(
                         withId(R.id.item_price_label),
@@ -191,11 +144,11 @@ class ProductActivityTest {
                 )
             )
         )
-        textInputEditText7.perform(scrollTo(), replaceText("10000"), closeSoftKeyboard())
+        textInputEditText7.perform(scrollTo(), replaceText("295"), closeSoftKeyboard())
 
         val textInputEditText8 = onView(
             allOf(
-                withId(R.id.item_tax), withText("10000"),
+                withId(R.id.item_tax), withText("295"),
                 childAtPosition(
                     childAtPosition(
                         withId(R.id.item_tax_label),
